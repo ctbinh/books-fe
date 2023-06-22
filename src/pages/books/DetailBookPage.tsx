@@ -21,6 +21,8 @@ const DetailBookPage = () => {
     getBookById();
   }, [bookId]);
 
+  
+
   return (
     <div className="grid grid-cols-4 gap-3 sm:gap-5 mt-5 w-4/5 mx-auto">
       <div className="col-span-4 sm:col-span-1 w-full rounded-md xl:aspect-h-8 xl:aspect-w-7">
