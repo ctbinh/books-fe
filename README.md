@@ -9,8 +9,6 @@ cp .env.example .env
 
 You need to fill out environment in `.env` file before going to next steps.
 
-Set up and run Elasticsearch
-
 After configuring environment, you can run app with:
 
 ```bash
