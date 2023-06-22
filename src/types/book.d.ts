@@ -2,7 +2,7 @@ type BookInfo = {
   id: string,
   title: string;
   author: string;
-  publishedDate: number;
+  publishedDate: string;
   description: string;
   price: number;
   imageUrl?: string;
@@ -14,4 +14,5 @@ type CreateBookData = {
   description: string;
   price: number;
   imageUrl: string;
+  publishedDate: string;
 }

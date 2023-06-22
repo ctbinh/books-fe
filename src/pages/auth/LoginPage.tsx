@@ -1,31 +1,29 @@
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
-import Input from "../../components/Input"
-import { Link } from "react-router-dom"
-import { authService } from "../../services"
-import { toast } from "react-toastify"
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import Input from "../../components/Input";
+import { Link } from "react-router-dom";
+import { authService } from "../../services";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
-  })
+  });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      await authService.login({email: data.email, password: data.password})
-    }
+      await authService.login({ email: data.email, password: data.password });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    catch(err: any) {
+    } catch (err: any) {
       toast.error(err.message);
     }
-  }
+  };
 
   return (
     <div className="mx-auto lg:p-24 p-6 gap-2 bg-none">
@@ -82,12 +80,16 @@ const LoginPage = () => {
             Login
           </button>
         </div>
-        <div className="text-center mt-3">Does not have an account? 
-          <Link className="text-sky-600" to={'/register'}> Sign up</Link>
+        <div className="text-center mt-3">
+          Does not have an account?
+          <Link className="text-sky-600" to={"/register"}>
+            {" "}
+            Sign up
+          </Link>
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

@@ -3,18 +3,20 @@ import defaultBookImg from "../../assets/default-book-icon.png";
 import { toast } from "react-toastify";
 import Input from "../../components/Input";
 import { booksService } from "../../services/books";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Button from "../../components/Button";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-const CreateBookPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
+const UpdateBookPage = () => {
+  const { bookId } = useParams();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    setValue,
   } = useForm<FieldValues>({
     defaultValues: {
       title: "",
@@ -26,10 +28,26 @@ const CreateBookPage = () => {
     },
   });
 
+  useEffect(() => {
+    const getBookById = async () => {
+      if (bookId) {
+        const book = await booksService.getById(bookId);
+        setValue("title", book.title);
+        setValue("imageUrl", book.imageUrl);
+        setValue("author", book.author);
+        setValue("description", book.description);
+        setValue("price", book.price);
+        setValue("publishedDate", book.publishedDate);
+      }
+    };
+    getBookById();
+  }, [bookId, setValue, navigate]);
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    setIsLoading(true);
     try {
-      const bookId = await booksService.create({
+      if (!bookId) return;
+      setIsLoading(true);
+      const result = await booksService.update(bookId, {
         title: data.title,
         author: data.author,
         description: data.description,
@@ -37,10 +55,10 @@ const CreateBookPage = () => {
         imageUrl: data.imageUrl,
         publishedDate: data.publishedDate,
       });
-      if (bookId) {
+      if (result) {
         setTimeout(() => {
           setIsLoading(false);
-          toast.success("Create book successfully!");
+          toast.success("Update book successfully!");
           navigate("/");
         }, 1000);
       }
@@ -129,11 +147,11 @@ const CreateBookPage = () => {
           </div>
         </div>
         <div className="mt-10">
-          <Button isLoading={isLoading} title="Create new book" />
+          <Button isLoading={isLoading} title="Update book" />
         </div>
       </form>
     </>
   );
 };
 
-export default CreateBookPage;
+export default UpdateBookPage;

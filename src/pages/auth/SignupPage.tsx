@@ -1,40 +1,39 @@
-// import React from 'react'
-
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
-import Input from "../../components/Input"
-import { Link } from "react-router-dom"
-import { authService } from "../../services"
-import { toast } from "react-toastify"
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import Input from "../../components/Input";
+import { Link } from "react-router-dom";
+import { authService } from "../../services";
+import { toast } from "react-toastify";
 
 const SignupPage = () => {
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      email: '',
-      password: '',
-      confirmPassword: '',
+      email: "",
+      password: "",
+      confirmPassword: "",
     },
-  })
+  });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    if(data.password !== data.confirmPassword) {
-      toast.warning("Password does not match")
-      return
+    if (data.password !== data.confirmPassword) {
+      toast.warning("Password does not match");
+      return;
     }
     try {
-      const responseData = await authService.signup({email: data.email, password: data.password})
-      console.log(responseData)
+      const responseData = await authService.signup({
+        email: data.email,
+        password: data.password,
+      });
+      console.log(responseData);
       toast.success("Account successfully created");
-    }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    catch(err: any) {
+    } catch (err: any) {
       toast.error(err.message);
     }
-  }
+  };
 
   return (
     <div className="mx-auto lg:p-24 p-6 gap-2 bg-none">
@@ -83,13 +82,17 @@ const SignupPage = () => {
           >
             Create Account
           </button>
-          <div className="text-center mt-3">Already have an account? 
-            <Link className="text-sky-600" to={'/login'}> Log in</Link>
+          <div className="text-center mt-3">
+            Already have an account?
+            <Link className="text-sky-600" to={"/login"}>
+              {" "}
+              Log in
+            </Link>
           </div>
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default SignupPage
+export default SignupPage;

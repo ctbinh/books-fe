@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "by": "Binh Cao",
+    "comment": "The Great Gatsby is a classic novel that takes readers on a captivating journey through the roaring 1920s. Fitzgerald's prose is rich and elegant, immersing us in the lavish lifestyles and hidden desires of the characters.",
+    "createdAt": 1687410128,
+    "childs": [
+      {
+        "id": "2",
+        "by": "John",
+        "comment": "Wow, excited!",
+        "createdAt": 1687420128
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "by": "Nick",
+    "comment": "Set in the racially charged Deep South during the 1930s, the story follows Scout Finch, a young girl navigating the complexities of her small town. Through Scout's innocent perspective, we witness her father, Atticus Finch, defending a black man falsely accused of a crime, challenging the deeply ingrained prejudices of the community.",
+    "createdAt": 1687400128,
+    "childs": [
+      {
+        "id": "4",
+        "by": "Binh Cao",
+        "comment": "Lee's narrative unfolds with grace and sensitivity, tackling heavy subjects with remarkable depth.",
+        "createdAt": 1687420128
+      }
+    ]
+  }
+]

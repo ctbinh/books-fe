@@ -9,7 +9,7 @@ interface InputProps {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   disabled?: boolean;
-  step?: number
+  step?: number;
 }
 
 const Input = ({
@@ -21,7 +21,7 @@ const Input = ({
   register,
   required,
   errors,
-  step
+  step,
 }: InputProps) => {
   return (
     <div>
@@ -33,8 +33,9 @@ const Input = ({
           <textarea
             id={id}
             disabled={disabled}
+            placeholder={placeholder}
             {...register(id, { required })}
-            className={`w-full focus:border-sky-700 focus-visible:outline-none px-3 py-2 placeholder:text-neutral-500 text-neutral-900 rounded-md bg-transparent border-neutral-600 border 
+            className={`w-full focus:border-sky-700 focus-visible:outline-none px-3 py-2 placeholder:text-neutral-500 text-neutral-900 rounded-md bg-transparent border-neutral-300 border 
             ${errors[id] && "border-red-600"}
             ${disabled && "opacity-50 cursor-default"}`}
             rows={4}
@@ -48,7 +49,7 @@ const Input = ({
             autoComplete={id}
             disabled={disabled}
             {...register(id, { required })}
-            className={`w-full focus:border-sky-700 focus-visible:outline-none px-3 py-2 placeholder:text-neutral-500 text-neutral-900 rounded-md bg-transparent border-neutral-600 border
+            className={`w-full focus:border-sky-700 focus-visible:outline-none px-3 py-2 placeholder:text-neutral-500 text-neutral-900 rounded-md bg-transparent border-neutral-300 border
           ${errors[id] && "border-red-600"}
           ${disabled && "opacity-50 cursor-default"}`}
           />
